@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+    <style>
+        table {
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function saveImg() {
+            var img = can.toDataURL('image/png');
+            img = img.replace('image/png', 'image/octet-stream');
+            return img;
+        }
+    </script>
+{% endblock %}
+
+{% block body %}
+    <h3 class="page-header">手書き認識</h3>
+    <div style="border:solid 1px #000000;width:400px;" id="candiv">
+        <canvas id="can" width="400px" height="300px"></canvas>
+    </div>
+    <input type="button" onClick="clearCan();" value="クリア" style="width:100;height:30;" data-inline="true"/>
+    <input type="button" name="img" onclick="saveImg()" value="認識" style="width:100;height:30;" data-inline="true"/>
+    <h4>
+        <a href="#" class="btn btn-default btn-sm">登録者リスト</a>
+    </h4>
+{% endblock %}
