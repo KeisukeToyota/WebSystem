@@ -5,4 +5,5 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'getImage', views.getImage, name='getImage'),
 ]

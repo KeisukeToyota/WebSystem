@@ -22,6 +22,7 @@ admin.site.site_title = settings.ADMIN_SITE_TITLE
 admin.site.logout_template = 'admin/logout.html'
 
 urlpatterns = [
+    url(r'^', include('Blog.urls', namespace='Blog')),
     url(r'^blog/', include('Blog.urls', namespace='Blog')),
     url(r'^cnn/', include('cnn.urls', namespace='cnn')),
     url(r'^admin/', admin.site.urls),

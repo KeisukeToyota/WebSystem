@@ -2,15 +2,28 @@
 
 {% block extrahead %}
 <style>
-table {
-  margin-top: 10px;
-}
+    table {
+      margin-top: 10px;
+    }
+    a:link { color: #000000; }
+    a:visited { color: #000000; }
+    a:hover { color: #000000; }
+    a:active { color: #000000; }
 </style>
 {% endblock %}
 
 {% block body %}
-    <h3 class="page-header">Blog</h3>
-    <h4>
-        <a href="#" class="btn btn-default btn-sm">登録者リスト</a>
-    </h4>
+    <h3 class="page-header">{{ blog.title }}</h3>
+    <h4>{{ blog.text|linebreaks }}</h4>
+    <br /><br />
+    <h5>コメント</h5>
+    {% for comment in comments %}
+        {{ comment.body }} [{{ comment.created_at }}]<br />
+    {% endfor %}
+    <br /><br />
+
+    <form action="/blog/{{ blog.id }}/post_comment" method="post">
+        <textarea name="comment"></textarea><br />
+        <button type="submit">投稿</button>
+    </form>
 {% endblock %}

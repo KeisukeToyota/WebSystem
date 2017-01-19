@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=devide-width,init-scale=1,user-scalable=no,minimum-scale=1,maximum-scale=1">
-    <title>{% block title %}Final task{% endblock %}</title>
+    <title>{% block title %}最終課題{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
@@ -18,7 +18,7 @@
     {#<link rel="shortcut icon" href="{{ STATICFILES_DIRS }}/static/favicon.ico" type="image/png">#}
     {% block extrahead %}{% endblock %}
 </head>
-<body onload="mam_draw_init();">
+<body onload="mam_draw_init();check();" align="center">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -68,7 +68,7 @@
         can.addEventListener("mouseup", onMouseUp, false);
         ct = can.getContext("2d");
         ct.strokeStyle = "#000000";
-        ct.lineWidth = 5;
+        ct.lineWidth = 15;
         ct.lineJoin = "round";
         ct.lineCap = "round";
         clearCan();
@@ -124,3 +124,12 @@
     }
 </script>
 
+<script>
+    function check(){
+        var strName;
+        strName = document.getElementById("test").textContent;
+        strName = strName.replace("/[\n\r]/g", "<br>");
+        test.innerHTML = strName;
+        document.body.onload=check;
+    }
+</script>
