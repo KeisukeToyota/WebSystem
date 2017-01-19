@@ -1,6 +1,5 @@
 import numpy as np
 import pickle
-import os
 from PIL import Image
 
 
@@ -545,9 +544,7 @@ class DeepConvNet:
 
     def accuracy(self, x, t, batch_size=100):
         # if t.ndim != 1 : t = np.argmax(t, axis=1)
-
         acc = 0.0
-
         print(int(x.shape[0] / batch_size))
 
         for i in range(int(x.shape[0] / batch_size)):
@@ -600,7 +597,6 @@ def identification(img_path):
     (x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
     img = np.array(Image.open(img_path))
     img = img/255.0
-    print(x_test[0:1])
     img = np.vstack([[[[ np.zeros(28),
                         np.zeros(28),
                         img[0],
@@ -632,7 +628,6 @@ def identification(img_path):
                         img[26],
                         img[27],]]]])
 
-    print(img)
     network = DeepConvNet()
     network.load_params("cnn/deep_convnet_params1.pkl")
     tx = img

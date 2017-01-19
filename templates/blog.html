@@ -13,17 +13,31 @@
 {% endblock %}
 
 {% block body %}
-    <h3 class="page-header">{{ blog.title }}</h3>
-    <h4>{{ blog.text|linebreaks }}</h4>
-    <br /><br />
-    <h5>コメント</h5>
-    {% for comment in comments %}
-        {{ comment.body }} [{{ comment.created_at }}]<br />
-    {% endfor %}
+    <div class="container">
+    <br>
+        <h1 class="page-header">{{ blog.title }}</h1>
+        <h4>{{ blog.text|linebreaksbr }}</h4>
+        <br /><br />
+    </div>
+
+    <button data-toggle="collapse" data-target="#demo" class="btn btn-primary btn-md">コメント欄</button>
+    <div id="demo" class="collapse" align="center">
+        <ul class="list-group" style="width: 500px;">
+        <br>
+            {% for comment in comments %}
+                <li class="list-group-item">{{ comment.body }} [{{ comment.created_at }}]</li>
+            {% endfor %}
+         </ul>
+    </div>
+
     <br /><br />
 
     <form action="/blog/{{ blog.id }}/post_comment" method="post">
-        <textarea name="comment"></textarea><br />
-        <button type="submit">投稿</button>
+        <div class="form-group" align="center">
+            <label for="comment">コメント:</label>
+            <input type='text' class="form-control" id="comment" name="comment" style="width: 300px;">
+        </div>
+        <button type="submit" class="btn btn-success btn-md">投稿</button>
     </form>
+
 {% endblock %}

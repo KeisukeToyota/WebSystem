@@ -15,7 +15,7 @@
 {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
 </head>
 <body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
-  data-admin-utc-offset="{% now "Z" %}" >
+  data-admin-utc-offset="{% now "Z" %}" ">
 
 <!-- Container -->
 <div id="container">
@@ -66,7 +66,7 @@
     <!-- Content -->
     <div id="content" class="{% block coltype %}colM{% endblock %}">
         {% block pretitle %}{% endblock %}
-        {% block content_title %}{% if title %}<h1>Application</h1>{% endif %}{% endblock %}
+        {% block content_title %}{% if title %}<h1>アプリケーション</h1>{% endif %}{% endblock %}
         {% block content %}
         {% block object-tools %}{% endblock %}
         {{ content }}

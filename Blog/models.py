@@ -20,6 +20,6 @@ class Blog(models.Model):
 class Comment(models.Model):
     id = models.AutoField(primary_key=True, unique=True)
     blog = models.ForeignKey(Blog)
-    body = models.TextField(max_length=255)
+    body = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
 

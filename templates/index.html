@@ -13,12 +13,13 @@
 {% endblock %}
 
 {% block body %}
-    <h3 class="page-header">Blog</h3>
+    <br>
+    <h1 class="page-header">Blog</h1>
     <div align="center">
-        {% for blog in blog.all %}
-            <li>
-                <a href="blog/{{ blog.id}}"><span style="font-size: 28px;">{{ blog.title }}</span> : [{{ blog.created_at}}]</a>
-            </li>
-        {% endfor %}
+        <div class="list-group" style="width: 400px;">
+             {% for blog in blog.all %}
+                 <a href="blog/{{ blog.id}}" class="list-group-item" style="width: 400px;">{{ blog.title }} : [{{ blog.created_at}}]</a>
+             {% endfor %}
+        </div>
     </div>
 {% endblock %}

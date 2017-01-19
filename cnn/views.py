@@ -24,13 +24,18 @@ def getImage(request):
     imgstr = re.search(r'base64,(.*)', datauri).group(1)
     name = 'static/image/' + str(random.randint(0,999999)) + '.png'
     output = open(name, 'wb')
-    print(imgstr)
     output.write(base64.b64decode(imgstr))
     output.close()
     img_src = cv2.imread(name)
     img_negaposi = 255 - img_src
     img_gray = cv2.cvtColor(img_negaposi, cv2.COLOR_BGR2GRAY)
-    img_resize = cv2.resize(img_gray,(28,28))
+    thresh = 100
+    max_pixel = 255
+    ret, img_dst = cv2.threshold(img_gray,
+                                 thresh,
+                                 max_pixel,
+                                 cv2.THRESH_BINARY)
+    img_resize = cv2.resize(img_dst,(28,28))
     cv2.imwrite(name, img_resize)
     answer = dl.identification(name)
 
