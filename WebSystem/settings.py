@@ -84,6 +84,8 @@ DATABASES = {
         'NAME': 'websystem',
         'USER': 'root',
         'PASSWORD': '1qaz2wsx3edc',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
