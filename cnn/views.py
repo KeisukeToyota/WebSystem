@@ -11,7 +11,7 @@ import base64
 import random
 import cv2
 import cnn.deeplearning as dl
-
+import numpy as np
 # Create your views here.
 
 
@@ -21,12 +21,9 @@ def index(request):
 
 def getImage(request):
     datauri = request.POST['img']
-    imgstr = re.search(r'base64,(.*)', datauri).group(1)
-    name = 'static/image/' + str(random.randint(0,999999)) + '.png'
-    output = open(name, 'wb')
-    output.write(base64.b64decode(imgstr))
-    output.close()
-    img_src = cv2.imread(name)
+    img_str = re.search(r'base64,(.*)', datauri).group(1)
+    nparr = np.fromstring(base64.b64decode(img_str), np.uint8)
+    img_src = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     img_negaposi = 255 - img_src
     img_gray = cv2.cvtColor(img_negaposi, cv2.COLOR_BGR2GRAY)
     thresh = 100
@@ -36,8 +33,5 @@ def getImage(request):
                                  max_pixel,
                                  cv2.THRESH_BINARY)
     img_resize = cv2.resize(img_dst,(28,28))
-    cv2.imwrite(name, img_resize)
-    answer = dl.identification(name)
-
-    # print(binary_img)
+    answer = dl.identification(img_resize)
     return render(request, 'cnn.html', {'answer':answer})

@@ -593,9 +593,9 @@ class DeepConvNet:
             self.layers[layer_idx].b = self.params['b' + str(i+1)]
 
 
-def identification(img_path):
+def identification(img):
     (x_train, t_train), (x_test, t_test) = load_mnist(flatten=False)
-    img = np.array(Image.open(img_path))
+    img = np.array(img)
     img = img/255.0
     img = np.vstack([[[[ np.zeros(28),
                         np.zeros(28),
