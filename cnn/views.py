@@ -1,14 +1,7 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from .models import *
-import csv
-import json
-from django.core import serializers
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.decorators import login_required
 import re
 import base64
-import random
 import cv2
 import cnn.deeplearning as dl
 import numpy as np
